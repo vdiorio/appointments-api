@@ -27,7 +27,7 @@ class AuthController {
         });
       }
 
-      if (!(await bcrypt.compare(password, user.password))) {
+      if (!(await bcrypt.compare(password, user.dataValues.password))) {
         /* #swagger.responses[401] = {
             description: "Senha incorreta."
         } */

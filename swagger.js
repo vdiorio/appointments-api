@@ -60,6 +60,7 @@ const doc = {
       date: "2024-05-06",
       time: "15:00",
       obs: "Dores constantes",
+      status: "SCHEDULED",
     },
     AddAppointment: {
       specialty: "Cardiologista",

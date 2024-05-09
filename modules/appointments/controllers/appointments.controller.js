@@ -13,7 +13,7 @@ class AppointmentsController {
 
       const appointments =
         user && user.role !== "ADMIN"
-          ? await appointmentsRepository.findAllByUserId(user.userId)
+          ? await appointmentsRepository.findAllByUserId(user.id)
           : await appointmentsRepository.findAll();
 
       /* #swagger.responses[200] = { 

@@ -24,6 +24,10 @@ const Appointment = database.define("Appointment", {
     type: Sequelize.TIME,
     allowNull: false,
   },
+  status: {
+    type: Sequelize.STRING,
+    defaultValue: "SCHEDULED",
+  },
   obs: {
     type: Sequelize.STRING,
     allowNull: false,
