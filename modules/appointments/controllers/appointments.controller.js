@@ -73,7 +73,7 @@ class AppointmentsController {
 
     try {
       appointment.userId = user.userId;
-      appointmentsRepository.create(appointment);
+      await appointmentsRepository.create(appointment);
 
       /* #swagger.responses[201] = { 
           description: "Consulta cadastrada." 
@@ -111,10 +111,90 @@ class AppointmentsController {
         return res.status(404).json({ message: "Consulta não encontrada." });
       }
 
-      appointmentsRepository.update(id, appointment);
+      await appointmentsRepository.update(id, appointment);
 
       /* #swagger.responses[204] = { 
           description: "Consulta atualizada com sucesso." 
+      } */
+      return res.status(204).json();
+    } catch (error) {
+      /* #swagger.responses[500] = { 
+          description: "Problemas com o servidor." 
+      } */
+      return res.status(500).json(error);
+    }
+  }
+
+  async cancel(req, res) {
+    // #swagger.tags = ["Appointments"]
+    // #swagger.description = "Endpoint para cancelar uma consulta."
+
+    // #swagger.parameters['id'] = { description: "Id da consulta" }
+    const { id } = req.params;
+
+    try {
+      const appointment = await appointmentsRepository.findOne(id);
+
+      if (!appointment) {
+        /* #swagger.responses[404] = { 
+            description: "Consulta não encontrada." 
+        } */
+        return res.status(404).json({ message: "Consulta não encontrada." });
+      }
+
+      if (appointment.status === "DONE") {
+        /* #swagger.responses[404] = { 
+            description: "Não é possível cancelar uma consulta concluída." 
+        } */
+        return res
+          .status(400)
+          .json({ message: "Não é possível cancelar uma consulta concluída." });
+      }
+
+      await appointmentsRepository.update(id, { status: "CANCELED" });
+
+      /* #swagger.responses[204] = { 
+          description: "Consulta cancelada com sucesso." 
+      } */
+      return res.status(204).json();
+    } catch (error) {
+      /* #swagger.responses[500] = { 
+          description: "Problemas com o servidor." 
+      } */
+      return res.status(500).json(error);
+    }
+  }
+
+  async conclude(req, res) {
+    // #swagger.tags = ["Appointments"]
+    // #swagger.description = "Endpoint para marcar uma consulta como concluída."
+
+    // #swagger.parameters['id'] = { description: "Id da consulta" }
+    const { id } = req.params;
+
+    try {
+      const appointment = await appointmentsRepository.findOne(id);
+
+      if (!appointment) {
+        /* #swagger.responses[404] = { 
+            description: "Consulta não encontrada." 
+        } */
+        return res.status(404).json({ message: "Consulta não encontrada." });
+      }
+
+      if (appointment.status === "CANCELED") {
+        /* #swagger.responses[404] = { 
+            description: "Não é possível concluir uma consulta cancelada." 
+        } */
+        return res
+          .status(400)
+          .json({ message: "Não é possível concluir uma consulta cancelada." });
+      }
+
+      await appointmentsRepository.update(id, { status: "DONE" });
+
+      /* #swagger.responses[204] = { 
+          description: "Consulta concluída com sucesso." 
       } */
       return res.status(204).json();
     } catch (error) {
@@ -142,7 +222,7 @@ class AppointmentsController {
         return res.status(404).json({ message: "Consulta não encontrada." });
       }
 
-      appointmentsRepository.delete(id);
+      await appointmentsRepository.delete(id);
 
       /* #swagger.responses[204] = { 
           description: "Consulta removida com sucesso." 

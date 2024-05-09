@@ -222,6 +222,84 @@
         }
       }
     },
+    "/appointments/cancel/{id}": {
+      "put": {
+        "tags": [
+          "Appointments"
+        ],
+        "description": "Endpoint para   uma consulta.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id da consulta"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Consulta cancelada com sucesso."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Consulta não encontrada."
+          },
+          "500": {
+            "description": "Problemas com o servidor."
+          }
+        }
+      }
+    },
+    "/appointments/done/{id}": {
+      "put": {
+        "tags": [
+          "Appointments"
+        ],
+        "description": "Endpoint para marcar uma consulta como concluída.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id da consulta"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Consulta concluída com sucesso."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Consulta não encontrada."
+          },
+          "500": {
+            "description": "Problemas com o servidor."
+          }
+        }
+      }
+    },
     "/auth/login": {
       "post": {
         "tags": [
