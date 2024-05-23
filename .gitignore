@@ -1,6 +1,9 @@
+package-lock.json
+
 /node_modules
 .env
 
 /infra/database.sqlite
 
 .DS_Store
+.vercel
