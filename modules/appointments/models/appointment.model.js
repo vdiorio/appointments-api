@@ -1,10 +1,10 @@
-const Sequelize = require('sequelize');
-const database = require('../../../infra/db');
-const User = require('../../users/models/user.model');
+const Sequelize = require("sequelize");
+const database = require("../../../infra/db");
+const User = require("../../users/models/user.model");
 
-const Appointment = database.define('Appointment', {
+const Appointment = database.define("Appointment", {
   id: {
-    type: Sequelize.UUID,
+    type: Sequelize.UUIDV4,
     allowNull: false,
     primaryKey: true,
   },
@@ -26,7 +26,7 @@ const Appointment = database.define('Appointment', {
   },
   status: {
     type: Sequelize.STRING,
-    defaultValue: 'SCHEDULED',
+    defaultValue: "SCHEDULED",
   },
   obs: {
     type: Sequelize.STRING(1000),
@@ -34,7 +34,7 @@ const Appointment = database.define('Appointment', {
   },
 });
 
-Appointment.belongsTo(User, { foreignKey: 'userId' });
+Appointment.belongsTo(User, { foreignKey: "userId" });
 
 Appointment.sync();
 
