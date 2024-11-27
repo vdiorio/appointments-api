@@ -1,9 +1,9 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../../../infra/db');
+const Sequelize = require("sequelize");
+const sequelize = require("../../../infra/db");
 
-const User = sequelize.define('User', {
+const User = sequelize.define("User", {
   id: {
-    type: Sequelize.UUID,
+    type: Sequelize.UUIDV4,
     allowNull: false,
     primaryKey: true,
   },
@@ -26,7 +26,7 @@ const User = sequelize.define('User', {
   role: {
     type: Sequelize.STRING,
     allowNull: false,
-    defaultValue: 'USER',
+    defaultValue: "USER",
   },
 });
 

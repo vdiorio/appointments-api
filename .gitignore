@@ -6,4 +6,3 @@ package-lock.json
 /infra/database.sqlite
 
 .DS_Store
-.vercel
