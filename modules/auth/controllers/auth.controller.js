@@ -70,11 +70,12 @@ class AuthController {
     // #swagger.tags = ["Auth"]
     // #swagger.description = "Endpoint para cadastrar um usuário."
 
-    /* #swagger.parameters['User'] = { 
-        in: 'body',
-        description: "Adicionando um novo usuário (o 'role' precisa ser 'ADMIN' ou 'USER').",
-        schema: { $ref: "#/definitions/AddUser" }
-    } */
+    /* #swagger.parameters['body'] = { 
+    in: 'body',
+    description: "Adicionando um novo usuário (o \"role\" precisa ser \"ADMIN\" ou \"USER\").",
+    required: true,
+    schema: { $ref: "#/definitions/AddUser" }
+} */
     const user = req.body;
 
     try {

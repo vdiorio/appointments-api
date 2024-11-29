@@ -350,16 +350,10 @@
           {
             "name": "body",
             "in": "body",
+            "description": "Adicionando um novo usuário (o 'role' precisa ser 'ADMIN' ou 'USER').",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/AddUser"
             }
           }
         ],
