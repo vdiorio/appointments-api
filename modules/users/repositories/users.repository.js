@@ -1,6 +1,8 @@
 const database = require("../../../infra/db");
-const User = require("../models/user.model");
 const { v4: uuidv4 } = require("uuid");
+const models = require("../../../infra/models");
+
+const { User } = models;
 
 class UsersRepository {
   async findAll() {

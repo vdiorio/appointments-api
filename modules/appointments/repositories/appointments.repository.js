@@ -1,7 +1,8 @@
 const database = require("../../../infra/db");
-const User = require("../../users/models/user.model");
-const Appointment = require("../models/appointment.model");
+const models = require("../../../infra/models");
 const { v4: uuidv4 } = require("uuid");
+
+const { User, Doctor, Appointment } = models;
 
 class AppointmentsRepository {
   async findAll() {
@@ -10,6 +11,13 @@ class AppointmentsRepository {
       include: [
         {
           model: User,
+          as: "user",
+          attributes: ["id", "name"],
+        },
+        {
+          model: Doctor,
+          as: "doctor",
+          attributes: ["id", "name", "specialty", "CRM"],
         },
       ],
     });
@@ -22,6 +30,16 @@ class AppointmentsRepository {
       where: {
         userId,
       },
+      include: [
+        {
+          model: User,
+          as: "user",
+        },
+        {
+          model: Doctor,
+          as: "doctor",
+        },
+      ],
     });
     return appointments;
   }

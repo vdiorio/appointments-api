@@ -1,3 +1,5 @@
+const app = require("./app");
+
 const swaggerAutogen = require("swagger-autogen")();
 
 const outputFile = "./swagger_output.json";
@@ -31,12 +33,12 @@ const doc = {
   definitions: {
     UserCredentials: {
       email: "email@email.com",
-      password: "123@4",
+      password: "1418",
     },
     AddUser: {
       name: "Fulano de Tal",
       email: "email@email.com",
-      password: "123@4",
+      password: "1418",
       role: "ADMIN", // ADMIN ou USER
     },
     UserDomain: {
@@ -46,31 +48,47 @@ const doc = {
     AuthUser: {
       user: {
         name: "Fulano de Tal",
-        email: "email@email.com",
-        password: "123@4",
-        role: "ADMIN", // ADMIN ou USER
+        password: "1418",
       },
       token:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNTlhMzQ4OS0wMjUyLTQyOWQtOTI2YS02OWFlYTdhYWMzM2EiLCJlbWFpbCI6ImVtYWlsQGVtYWlsLmNvbSIsImlhdCI6MTcxNTE5NjYwOSwiZXhwIjoxNzE1MjAzODA5fQ.SAwWd63TQjr3oZSD32APCCeu5LiZXNmmQEVCCLCLgaY",
     },
+    Doctor: {
+      id: "3961048c-9242-45a2-92b3-11d24023cd5b",
+      name: "Victor Schwartz",
+      specialty: "Cardiologista",
+      CRM: "12345678",
+      appointments: [
+        {
+          date: "2024-05-06",
+          time: "15:00",
+        },
+      ],
+    },
+    DoctorDomain: {
+      id: "3961048c-9242-45a2-92b3-11d24023cd5b",
+      name: "Victor Schwartz",
+      specialty: "Cardiologista",
+      CRM: "12345678",
+    },
     Appointment: {
       id: "3961048c-9242-45a2-92b3-11d24023cd5b",
-      specialty: "Cardiologista",
-      doctor: "Victor Schwartz",
       date: "2024-05-06",
       time: "15:00",
-      obs: "Dores constantes",
       status: "SCHEDULED",
+      userId: "3961048c-9242-45a2-92b3-11d24023cd5b",
+      doctorId: "3961048c-9242-45a2-92b3-11d24023cd5b",
+      user: { $ref: "#/definitions/UserDomain" },
+      doctor: { $ref: "#/definitions/DoctorDomain" },
     },
     AddAppointment: {
-      specialty: "Cardiologista",
-      doctor: "Victor Schwartz",
+      doctorId: "3961048c-9242-45a2-92b3-11d24023cd5b",
       date: "2024-05-06",
       time: "15:00",
-      obs: "Dores constantes",
     },
     Appointments: [{ $ref: "#/definitions/Appointment" }],
     Users: [{ $ref: "#/definitions/UserDomain" }],
+    Doctors: [{ $ref: "#/definitions/Doctor" }],
   },
 };
 

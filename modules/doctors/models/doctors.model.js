@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../../../infra/db");
 
-const User = sequelize.define("User", {
+const Doctor = sequelize.define("Doctor", {
   id: {
     type: Sequelize.UUIDV4,
     allowNull: false,
@@ -11,29 +11,21 @@ const User = sequelize.define("User", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  email: {
+  specialty: {
     type: Sequelize.STRING,
     allowNull: false,
     unique: true,
   },
-  password: {
+  CRM: {
     type: Sequelize.STRING,
     allowNull: false,
-    get() {
-      return undefined;
-    },
-  },
-  role: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    defaultValue: "USER",
   },
 });
 
-User.associate = function (models) {
-  User.hasMany(models.Appointment, {
-    foreignKey: "userId",
+Doctor.associate = function (models) {
+  Doctor.hasMany(models.Appointment, {
+    foreignKey: "doctorId",
   });
 };
 
-module.exports = User;
+module.exports = Doctor;

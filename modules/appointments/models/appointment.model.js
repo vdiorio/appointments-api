@@ -1,20 +1,13 @@
 const Sequelize = require("sequelize");
 const database = require("../../../infra/db");
 const User = require("../../users/models/user.model");
+const Doctor = require("../../doctors/models/doctors.model");
 
 const Appointment = database.define("Appointment", {
   id: {
     type: Sequelize.UUIDV4,
     allowNull: false,
     primaryKey: true,
-  },
-  specialty: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  doctor: {
-    type: Sequelize.STRING,
-    allowNull: false,
   },
   date: {
     type: Sequelize.DATE,
@@ -27,15 +20,13 @@ const Appointment = database.define("Appointment", {
   status: {
     type: Sequelize.STRING,
     defaultValue: "SCHEDULED",
-  },
-  obs: {
-    type: Sequelize.STRING(1000),
-    allowNull: false,
+    validate: {
+      isIn: [["SCHEDULED", "CANCELLED", "COMPLETED"]],
+    },
   },
 });
 
-Appointment.belongsTo(User, { foreignKey: "userId" });
-
-Appointment.sync();
+Appointment.belongsTo(User, { as: "user", foreignKey: "userId" }); // User who made the appointment
+Appointment.belongsTo(Doctor, { as: "doctor", foreignKey: "doctorId" }); // Doctor who will be treating the patient
 
 module.exports = Appointment;
