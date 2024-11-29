@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "npm run db:seed && nodemon app",
+    "start": "npm run db:seed && node app.js",
+    "dev": "nodemon app.js",
     "swagger-autogen": "node swagger.js",
     "db:seed": "node infra/seed/seed.js"
   },
