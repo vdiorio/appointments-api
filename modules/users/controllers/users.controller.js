@@ -15,6 +15,7 @@ class UsersController {
         return {
           id: user.id,
           name: user.name,
+          role: user.role,
         };
       });
 

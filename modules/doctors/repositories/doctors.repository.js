@@ -21,6 +21,29 @@ class DoctorsRepository {
     doctor.id = uuidv4();
     await Doctor.create(doctor);
   }
+
+  async findById(id) {
+    await database.sync();
+    return await Doctor.findByPk(id);
+  }
+
+  async update(id, doctor) {
+    await database.sync();
+    return await Doctor.update(doctor, {
+      where: {
+        id,
+      },
+    });
+  }
+
+  async delete(id) {
+    await database.sync();
+    return await Doctor.destroy({
+      where: {
+        id,
+      },
+    });
+  }
 }
 
 module.exports = new DoctorsRepository();

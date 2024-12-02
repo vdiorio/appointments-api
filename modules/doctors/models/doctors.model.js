@@ -20,6 +20,23 @@ const Doctor = sequelize.define("Doctor", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  hospital: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  address: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  modalty: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    default: "online",
+  },
+  photoUrl: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
 });
 
 Doctor.associate = function (models) {
