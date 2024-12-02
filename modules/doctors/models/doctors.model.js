@@ -14,7 +14,6 @@ const Doctor = sequelize.define("Doctor", {
   specialty: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
   },
   CRM: {
     type: Sequelize.STRING,
