@@ -17,7 +17,16 @@ class AppointmentsRepository {
         {
           model: Doctor,
           as: "doctor",
-          attributes: ["id", "name", "specialty", "CRM"],
+          attributes: [
+            "id",
+            "name",
+            "specialty",
+            "CRM",
+            "hospital",
+            "modalty",
+            "address",
+            "photoUrl",
+          ],
         },
       ],
     });
