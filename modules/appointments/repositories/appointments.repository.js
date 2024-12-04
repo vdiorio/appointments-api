@@ -18,6 +18,11 @@ function createDateFromString(dateString) {
   const [year, month, day] = dateString.split("-").map(Number);
   return new Date(year, month, day); // Subtract 1 from month since it's 0-indexed
 }
+function createDateFromString2(dateString) {
+  // Parse the date string and create a new Date object
+  const [day, month, year] = dateString.split("/").map(Number);
+  return new Date(year, month, day); // Subtract 1 from month since it's 0-indexed
+}
 
 class AppointmentsRepository {
   async findAll() {
