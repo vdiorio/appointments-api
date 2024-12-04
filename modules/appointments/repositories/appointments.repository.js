@@ -4,6 +4,14 @@ const { v4: uuidv4 } = require("uuid");
 
 const { User, Doctor, Appointment } = models;
 
+function formatDate(isoDate) {
+  const date = new Date(isoDate);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
 class AppointmentsRepository {
   async findAll() {
     await database.sync();
@@ -30,7 +38,11 @@ class AppointmentsRepository {
         },
       ],
     });
-    return appointments;
+
+    return appointments.map((appointment) => ({
+      ...appointment,
+      date: formatDate(appointment.date),
+    }));
   }
 
   async findAllByUserId(userId) {
@@ -50,7 +62,10 @@ class AppointmentsRepository {
         },
       ],
     });
-    return appointments;
+    return appointments.map((appointment) => ({
+      ...appointment,
+      date: formatDate(appointment.date),
+    }));
   }
 
   async findOne(id) {
@@ -66,6 +81,11 @@ class AppointmentsRepository {
         },
       ],
     });
+
+    if (appointment) {
+      appointment.date = formatDate(appointment.date);
+    }
+
     return appointment;
   }
 
