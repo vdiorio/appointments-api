@@ -1,3 +1,4 @@
+const app = require("../../../app");
 const database = require("../../../infra/db");
 const models = require("../../../infra/models");
 const { v4: uuidv4 } = require("uuid");
@@ -40,7 +41,12 @@ class AppointmentsRepository {
     });
 
     return appointments.map((appointment) => ({
-      ...appointment,
+      id: appointment.id,
+      time: appointment.time,
+      status: appointment.status,
+      user: appointment.user,
+      doctor: appointment.doctor,
+
       date: formatDate(appointment.date),
     }));
   }
@@ -63,7 +69,12 @@ class AppointmentsRepository {
       ],
     });
     return appointments.map((appointment) => ({
-      ...appointment,
+      id: appointment.id,
+      time: appointment.time,
+      status: appointment.status,
+      user: appointment.user,
+      doctor: appointment.doctor,
+
       date: formatDate(appointment.date),
     }));
   }
@@ -92,7 +103,12 @@ class AppointmentsRepository {
   async create(appointment) {
     await database.sync();
     return await Appointment.create({
-      ...appointment,
+      id: appointment.id,
+      time: appointment.time,
+      status: appointment.status,
+      user: appointment.user,
+      doctor: appointment.doctor,
+
       id: uuidv4(),
     });
   }
