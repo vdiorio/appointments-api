@@ -21,7 +21,7 @@ const Appointment = database.define("Appointment", {
     type: Sequelize.STRING,
     defaultValue: "SCHEDULED",
     validate: {
-      isIn: [["SCHEDULED", "CANCELLED", "COMPLETED"]],
+      isIn: [["SCHEDULED", "CANCELED", "COMPLETED"]],
     },
   },
 });

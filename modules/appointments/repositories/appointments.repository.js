@@ -62,6 +62,7 @@ class AppointmentsRepository {
       include: [
         {
           model: User,
+          as: "user",
         },
       ],
     });

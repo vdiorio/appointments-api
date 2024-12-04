@@ -97,7 +97,7 @@ class AppointmentsController {
     /* #swagger.parameters['Appointment'] = { 
         in: 'body',
         description: "Atualizando uma consulta.",
-        schema: { $ref: "#/definitions/Appointment" }
+        schema: { $ref: "#/definitions/UpdateAppointment" }
     } */
     const appointment = req.body;
 
@@ -161,6 +161,7 @@ class AppointmentsController {
       /* #swagger.responses[500] = { 
           description: "Problemas com o servidor." 
       } */
+      console.log(error);
       return res.status(500).json(error);
     }
   }

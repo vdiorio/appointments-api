@@ -13,7 +13,9 @@
       "description": "Endpoints para gerenciamento de consultas médicas"
     }
   ],
-  "schemes": ["https"],
+  "schemes": [
+    "https"
+  ],
   "securityDefinitions": {
     "api_key": {
       "type": "apiKey",
@@ -21,12 +23,18 @@
       "in": "header"
     }
   },
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/appointments/": {
       "get": {
-        "tags": ["Appointments"],
+        "tags": [
+          "Appointments"
+        ],
         "description": "Endpoint para obter a lista de consultas.",
         "parameters": [
           {
@@ -54,7 +62,9 @@
         }
       },
       "post": {
-        "tags": ["Appointments"],
+        "tags": [
+          "Appointments"
+        ],
         "description": "Endpoint para cadastrar uma consulta.",
         "parameters": [
           {
@@ -89,7 +99,9 @@
     },
     "/appointments/{id}": {
       "get": {
-        "tags": ["Appointments"],
+        "tags": [
+          "Appointments"
+        ],
         "description": "Endpoint para obter uma consulta.",
         "parameters": [
           {
@@ -127,7 +139,9 @@
         }
       },
       "put": {
-        "tags": ["Appointments"],
+        "tags": [
+          "Appointments"
+        ],
         "description": "Endpoint para atualizar uma consulta.",
         "parameters": [
           {
@@ -147,7 +161,7 @@
             "in": "body",
             "description": "Atualizando uma consulta.",
             "schema": {
-              "$ref": "#/definitions/Appointment"
+              "$ref": "#/definitions/UpdateAppointment"
             }
           }
         ],
@@ -170,7 +184,9 @@
         }
       },
       "delete": {
-        "tags": ["Appointments"],
+        "tags": [
+          "Appointments"
+        ],
         "description": "Endpoint para remover uma consulta.",
         "parameters": [
           {
@@ -207,7 +223,9 @@
     },
     "/appointments/cancel/{id}": {
       "put": {
-        "tags": ["Appointments"],
+        "tags": [
+          "Appointments"
+        ],
         "description": "Endpoint para   uma consulta.",
         "parameters": [
           {
@@ -247,7 +265,9 @@
     },
     "/appointments/done/{id}": {
       "put": {
-        "tags": ["Appointments"],
+        "tags": [
+          "Appointments"
+        ],
         "description": "Endpoint para marcar uma consulta como concluída.",
         "parameters": [
           {
@@ -287,7 +307,9 @@
     },
     "/auth/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "Endpoint para login de usuários.",
         "parameters": [
           {
@@ -320,7 +342,9 @@
     },
     "/auth/register": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "Endpoint para cadastrar um usuário.",
         "parameters": [
           {
@@ -348,7 +372,9 @@
     },
     "/users/": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Endpoint para listagem usuários.",
         "parameters": [
           {
@@ -381,7 +407,9 @@
     },
     "/doctors/": {
       "get": {
-        "tags": ["Doctors"],
+        "tags": [
+          "Doctors"
+        ],
         "description": "Endpoint para listagem médicos.",
         "parameters": [
           {
@@ -412,7 +440,9 @@
         }
       },
       "post": {
-        "tags": ["Doctors"],
+        "tags": [
+          "Doctors"
+        ],
         "description": "Endpoint para criar um médico.",
         "parameters": [
           {
@@ -447,7 +477,9 @@
     },
     "/doctors/{id}": {
       "put": {
-        "tags": ["Doctors"],
+        "tags": [
+          "Doctors"
+        ],
         "description": "Endpoint para atualizar um médico.",
         "parameters": [
           {
@@ -487,7 +519,9 @@
         }
       },
       "delete": {
-        "tags": ["Doctors"],
+        "tags": [
+          "Doctors"
+        ],
         "description": "Endpoint para remover um medico.",
         "parameters": [
           {
@@ -754,6 +788,31 @@
         "time": {
           "type": "string",
           "example": "15:00"
+        }
+      }
+    },
+    "UpdateAppointment": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "example": "2024-05-06"
+        },
+        "time": {
+          "type": "string",
+          "example": "15:00"
+        },
+        "status": {
+          "type": "string",
+          "example": "SCHEDULED"
+        },
+        "userId": {
+          "type": "string",
+          "example": "3961048c-9242-45a2-92b3-11d24023cd5b"
+        },
+        "doctorId": {
+          "type": "string",
+          "example": "3961048c-9242-45a2-92b3-11d24023cd5b"
         }
       }
     },
