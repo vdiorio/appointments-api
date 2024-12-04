@@ -74,6 +74,7 @@ class AppointmentsRepository {
         },
       ],
     });
+    console.log(appointments);
     return appointments.map((appointment) => ({
       id: appointment.id,
       time: appointment.time,
@@ -110,12 +111,12 @@ class AppointmentsRepository {
     await database.sync();
 
     return await Appointment.create({
+      id: uuidv4(),
       time: appointment.time,
       status: appointment.status,
-      user: appointment.user,
-      doctor: appointment.doctor,
       date: createDateFromString(appointment.date),
-      id: uuidv4(),
+      userId: appointment.userId,
+      doctorId: appointment.doctorId,
     });
   }
 
@@ -123,8 +124,12 @@ class AppointmentsRepository {
     await database.sync();
     return await Appointment.update(
       {
-        ...appointment,
+        id: uuidv4(),
+        time: appointment.time,
+        status: appointment.status,
         date: createDateFromString(appointment.date),
+        userId: appointment.userId,
+        doctorId: appointment.doctorId,
       },
       {
         where: {
