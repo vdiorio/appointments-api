@@ -13,6 +13,12 @@ function formatDate(isoDate) {
   return `${day}/${month}/${year}`;
 }
 
+function createDateFromString(dateString) {
+  // Parse the date string and create a new Date object
+  const [year, month, day] = dateString.split("-").map(Number);
+  return new Date(year, month, day); // Subtract 1 from month since it's 0-indexed
+}
+
 class AppointmentsRepository {
   async findAll() {
     await database.sync();
@@ -102,24 +108,30 @@ class AppointmentsRepository {
 
   async create(appointment) {
     await database.sync();
+
     return await Appointment.create({
-      id: appointment.id,
       time: appointment.time,
       status: appointment.status,
       user: appointment.user,
       doctor: appointment.doctor,
-
+      date: createDateFromString(appointment.date),
       id: uuidv4(),
     });
   }
 
   async update(id, appointment) {
     await database.sync();
-    return await Appointment.update(appointment, {
-      where: {
-        id,
+    return await Appointment.update(
+      {
+        ...appointment,
+        date: createDateFromString(appointment.date),
       },
-    });
+      {
+        where: {
+          id,
+        },
+      }
+    );
   }
 
   async delete(id) {
